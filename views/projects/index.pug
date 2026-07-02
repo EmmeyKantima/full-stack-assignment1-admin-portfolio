@@ -1,0 +1,32 @@
+extends ../common/layout
+
+block layout-content
+
+  main
+    h1 Administer Projects
+    p Manage all portfolio projects.
+    a.button.primaryBtn(href="/projects/add") + Add Project
+
+    table
+      thead
+        tr
+          th Title
+          th Description
+          th Technologies
+          th Operations
+      tbody
+        each project in projects
+          tr
+            td #{project.title}
+            td #{project.description}
+            td
+              each tech in project.technologies
+                span #{tech}
+            td
+              form(action="/projects/edit", method="get")
+                input( type="hidden", name="projectId",value=project._id)
+                button.changeBtn(type="submit") Edit
+              |   
+              form(action="/projects/delete", method="get")
+                input(type="hidden", name="projectId", value=project._id)  
+                button.dangerBtn(type="submit") Delete

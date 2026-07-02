@@ -1,0 +1,30 @@
+extends ../common/layout
+
+block layout-content
+
+  main
+
+    h1 Edit Technology
+
+    form.form(method="post", action="/technologies/edit/submit")
+        input( type="hidden", name="technologyId", value=technology._id )
+        div
+            label(for="name") Name
+            input(type="text", name="name", value=technology.name, required)
+
+        div
+            label(for="category") Category
+            select(id="technology-category", name="category", required)
+
+                option(selected=technology.category=="") Select
+                option(selected=technology.category=="Frontend") Frontend
+                option(selected=technology.category=="Backend") Backend
+                option(selected=technology.category=="Database") Database
+                option(selected=technology.category=="Tool") Tool
+                option(selected=technology.category=="Language") Language
+                option(selected=technology.category=="Framework") Framework
+                option(selected=technology.category=="Other") Other
+
+        button.primaryBtn(type="submit") Save Changes
+
+        a.back(href="/technologies") Cancel

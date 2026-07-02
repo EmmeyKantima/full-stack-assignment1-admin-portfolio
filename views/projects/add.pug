@@ -1,0 +1,38 @@
+extends ../common/layout
+
+block layout-content
+
+  main
+    h1 Add Project
+    form.form(method="post", action="/projects/add/submit")
+
+      div
+        label(for="project-title") Title
+        input(type="text", id="project-title", name="title", placeholder="Portfolio Website", required)
+      
+      div
+        label(for="project-description") Description
+        textarea(name="description", id="project-description", rows="3", placeholder="Describe project...", required)
+      
+      div
+        label(for="project-github") GitHub URL
+        input(type="url", id="project-github", name="github", placeholder="https://github.com/username/project" )
+      
+      div
+        label(for="project-demo") Demo URL
+        input(type="url", id="project-demo", name="demo", placeholder="https://yourproject.com")
+      
+      div
+        if technologies && technologies.length
+          .checkbox-grid
+            each tech in technologies
+              div
+                label( for=`tech-${tech._id}`) | #{tech.name}
+                input( type="checkbox", id=`tech-${tech._id}`, name="technologies", value=tech.name )
+
+                
+        else
+          p.muted No technologies available. Add first.
+      button.primaryBtn(type="submit") Create Project
+
+      a.back(href="/projects") Cancel

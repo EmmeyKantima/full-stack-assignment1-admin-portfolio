@@ -1,0 +1,15 @@
+doctype html
+html(lang="en")
+  head 
+    meta(charset="utf-8")
+    title #{title} | Admin Page
+    link(rel="stylesheet", href="/css/styles.css")
+    block scripts 
+      script(async, defer, src="/js/script.js")
+  body
+    include includes/header.pug
+        
+    block layout-content
+
+    footer#footer 
+      div &copy; Copyright Kantima, 2026.

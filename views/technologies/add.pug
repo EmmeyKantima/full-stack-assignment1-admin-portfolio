@@ -1,0 +1,27 @@
+extends ../common/layout
+
+block layout-content
+
+  main
+    h1 Add Technology
+
+    form.form(method="post", action="/technologies/add/submit")
+      div
+        label(for="technology-name") Technology Name
+        input(type="text", name="name", required)
+
+      div
+        label(for="technology-category") Category
+        select(name="category" required)
+          option(value="") Select
+          option(value="Frontend") Frontend
+          option(value="Backend") Backend
+          option(value="Database") Database
+          option(value="Tool") Tool
+          option(value="Language") Language
+          option(value="Framework") Framework
+          option(value="Other") Other
+
+      button.primaryBtn(type="submit") Add Technology
+
+      a.back(href="/technologies") Cancel

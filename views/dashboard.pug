@@ -1,0 +1,32 @@
+extends common/layout
+
+block layout-content
+    main.dashboard
+
+    h1 Portfolio Admin Dashboard
+
+    p Manage your portfolio.
+
+    h2 Collections
+    section.show-card
+
+      .card
+        h2 Projects
+        p Manage portfolio projects.
+        a.buttonMain(href="/projects") Manage Projects
+
+      .card
+        h2 Technologies
+        p Manage technologies in projects.
+        a.buttonMain(href="/technologies") Manage Technologies
+
+    h2 API Endpoints
+
+    ul
+        li
+            a.buttonApi(href="/api/projects", target="_blank")
+                    | Projects API
+        li
+            a.buttonApi(href="/api/technologies", target="_blank")
+                    | Technologies API
+

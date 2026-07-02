@@ -1,0 +1,29 @@
+extends ../common/layout
+
+block layout-content
+
+  main
+    h1 Technologies
+    p Manage all portfolio technologies.
+    a.button.primaryBtn(href="/technologies/add") + Add Technology
+      
+    table
+        thead
+          tr
+            th Name
+            th Category
+            th Actions
+
+        tbody
+          each tech in technologies
+            tr
+              td #{tech.name}
+              td #{tech.category}
+              td
+                form(action="/technologies/edit", method="get")
+                    input( type="hidden", name="technologyId", value=tech._id)
+                    button.changeBtn(type="submit") Edit
+
+                form(method="get", action="/technologies/delete")
+                    input(type="hidden", name="technologyId", value=tech._id)
+                    button.dangerBtn(type="submit") Delete

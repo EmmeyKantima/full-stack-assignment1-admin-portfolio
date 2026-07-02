@@ -1,0 +1,41 @@
+extends ../common/layout
+
+block layout-content
+
+  main
+
+    h1 Edit Project
+    form.form(method="post", action="/projects/edit/submit")
+        input( type="hidden", name="projectId", value=project._id)
+
+        div  
+            label(for="project-title") Title
+            input(type="text", id="project-title", name="title", value=project.title, required)
+
+        div 
+            label(for="project-description") Description
+            textarea(name="description", id="project-description", rows="3", required) #{project.description}
+
+        div 
+            label(for="project-github") GitHub URL
+            input(type="url", id="project-github", name="github", value=project.github)
+
+        div 
+            label(for="project-demo") Demo URL
+            input(type="url", id="project-demo", name="demo", value=project.demo)
+
+        div 
+            label Technologies
+            if technologies && technologies.length
+                .checkbox-grid
+                    each tech in technologies
+                        label.checkbox(for=`tech-${tech._id}`)
+                        input(type="checkbox", id=`tech-${tech._id}`, name="technologies", value=tech.name, checked=project.technologies && project.technologies.includes(tech.name))
+                        span= tech.name
+
+            else
+                p.muted No technologies available
+
+        button.primaryBtn(type="submit") Save Changes
+        
+        a.back(href="/projects") Cancel
