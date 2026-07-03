@@ -29,9 +29,10 @@ block layout-content
             if technologies && technologies.length
                 .checkbox-grid
                     each tech in technologies
-                        label.checkbox(for=`tech-${tech._id}`)
-                        input(type="checkbox", id=`tech-${tech._id}`, name="technologies", value=tech.name, checked=project.technologies && project.technologies.includes(tech.name))
-                        span= tech.name
+                        div
+                            label.checkbox(for=`tech-${tech._id}`)
+                                input(type="checkbox", id=`tech-${tech._id}`, name="technologies", value=tech.name, checked=project.technologies && project.technologies.includes(tech.name))
+                                span=tech.name
 
             else
                 p.muted No technologies available

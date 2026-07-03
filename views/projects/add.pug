@@ -23,13 +23,15 @@ block layout-content
         input(type="url", id="project-demo", name="demo", placeholder="https://yourproject.com")
       
       div
+        label Technologies
         if technologies && technologies.length
           .checkbox-grid
             each tech in technologies
               div
-                label( for=`tech-${tech._id}`) | #{tech.name}
-                input( type="checkbox", id=`tech-${tech._id}`, name="technologies", value=tech.name )
-
+                label.checkbox( for=`tech-${tech._id}`) #{tech.name}
+                  input( type="checkbox", id=`tech-${tech._id}`, name="technologies", value=tech.name )
+                  
+              
                 
         else
           p.muted No technologies available. Add first.

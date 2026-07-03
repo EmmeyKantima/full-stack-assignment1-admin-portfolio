@@ -13,7 +13,9 @@ block layout-content
           th Title
           th Description
           th Technologies
-          th Operations
+          th Github
+          th Demo Site
+          th Actions
       tbody
         each project in projects
           tr
@@ -21,7 +23,9 @@ block layout-content
             td #{project.description}
             td
               each tech in project.technologies
-                span #{tech}
+                span.techBadge #{tech}
+            td #{project.github}
+            td #{project.demo}
             td
               form(action="/projects/edit", method="get")
                 input( type="hidden", name="projectId",value=project._id)

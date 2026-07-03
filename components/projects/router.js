@@ -24,17 +24,26 @@ router.get("/add", async (req, res) => {
 
 // ADD SUBMIT
 router.post("/add/submit", async (req, res) => {
-  let newProject = {
-    title: req.body.title,
-    description: req.body.description,
-    github: req.body.github,
-    demo: req.body.demo,
-    technologies: req.body.technologies || []};
-  await projectDB.addProject(newProject);
-  res.redirect("/projects");
+
+    let technologies = req.body.technologies;
+    if (!Array.isArray(technologies)) {
+        technologies = technologies ? [technologies] : [];
+    }
+
+    let newProject = {
+        title: req.body.title,
+        description: req.body.description,
+        github: req.body.github,
+        demo: req.body.demo,
+        technologies: technologies
+    };
+
+    await projectDB.addProject(newProject);
+
+    res.redirect("/projects");
 });
 
-//Edit
+// EDIT
 router.get("/edit", async (req, res) => {
 
     const project = await projectDB.getProject(req.query.projectId);
@@ -43,8 +52,14 @@ router.get("/edit", async (req, res) => {
     res.render("projects/edit", { title: "Edit Project", project,technologies});
 });
 
-//Edit Submit
+// EDIT SUMBIT
 router.post("/edit/submit", async (req, res) => {
+
+    let technologies = req.body.technologies;
+
+    if (!Array.isArray(technologies)) {
+        technologies = technologies ? [technologies] : [];
+    }
 
     let projectId = req.body.projectId;
     let updatedProject = {
@@ -52,7 +67,7 @@ router.post("/edit/submit", async (req, res) => {
         description: req.body.description,
         github: req.body.github,
         demo: req.body.demo,
-        technologies: req.body.technologies || []
+        technologies: technologies
     };
 
     await projectDB.updateProject(projectId, updatedProject);

@@ -8,11 +8,11 @@ block layout-content
     form.form(method="post", action="/technologies/add/submit")
       div
         label(for="technology-name") Technology Name
-        input(type="text", name="name", required)
+        input(type="text", id="technology-name", name="name", required)
 
       div
         label(for="technology-category") Category
-        select(name="category" required)
+        select(id="technology-category", name="category" required)
           option(value="") Select
           option(value="Frontend") Frontend
           option(value="Backend") Backend
