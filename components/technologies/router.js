@@ -6,19 +6,19 @@ import techDB from "./func.js";
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
 
-// LIST
+// Display all technologies
 router.get("/", async (req, res) => {
   let technologies = await techDB.getTechnologies();
 
   res.render("technologies/index", { title: "Technologies", technologies });
 });
 
-// ADD PAGE
+// ADD Technology page
 router.get("/add", (req, res) => {
   res.render("technologies/add", { title: "Add Technology" });
 });
 
-// ADD SUBMIT
+// Process Add SUBMIT Technology form
 router.post("/add/submit", async (req, res) => {
   let newTech = { name: req.body.name, category: req.body.category};
   await techDB.addTechnology(newTech);
@@ -26,7 +26,7 @@ router.post("/add/submit", async (req, res) => {
   res.redirect("/technologies");
 });
 
-// Edit
+// Edit Technology page
 router.get("/edit", async (req, res) => {
 
     const technology = await techDB.getTechnology(req.query.technologyId);
@@ -35,7 +35,7 @@ router.get("/edit", async (req, res) => {
 
 });
 
-// Edit Submit
+// Edit Submit Technology form
 router.post("/edit/submit", async (req, res) => {
 
     await techDB.updateTechnology(req.body.technologyId, { name: req.body.name, category: req.body.category });
@@ -44,7 +44,7 @@ router.post("/edit/submit", async (req, res) => {
 
 });
 
-// DELETE
+// DELETE technology
 router.get("/delete", async (req, res) => {
   await techDB.deleteTechnology(req.query.technologyId);
 

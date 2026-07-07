@@ -1,13 +1,15 @@
 import express from "express";
 const router = express.Router();
 
+// Import database
 import projectDB from "./func.js";
 import technologyDB from "../technologies/func.js";
 
+// Enable form data parsing
 router.use(express.urlencoded({ extended: true }));
 router.use(express.json());
 
-// LIST PAGE
+// Display all projects
 router.get("/", async (req, res) => {
   let projects = await projectDB.getProjects();
 
@@ -22,7 +24,7 @@ router.get("/add", async (req, res) => {
   res.render("projects/add", { title: "Add Project", technologies });
 });
 
-// ADD SUBMIT
+// Process ADD submit form
 router.post("/add/submit", async (req, res) => {
 
     let technologies = req.body.technologies;
@@ -43,7 +45,7 @@ router.post("/add/submit", async (req, res) => {
     res.redirect("/projects");
 });
 
-// EDIT
+// EDIT Project page
 router.get("/edit", async (req, res) => {
 
     const project = await projectDB.getProject(req.query.projectId);
@@ -52,7 +54,7 @@ router.get("/edit", async (req, res) => {
     res.render("projects/edit", { title: "Edit Project", project,technologies});
 });
 
-// EDIT SUMBIT
+// Process EDIT submit form
 router.post("/edit/submit", async (req, res) => {
 
     let technologies = req.body.technologies;
@@ -75,7 +77,7 @@ router.post("/edit/submit", async (req, res) => {
     res.redirect("/projects");
 });
 
-// DELETE
+// DELETE Project
 router.get("/delete", async (req, res) => {
   await projectDB.deleteProject(req.query.projectId);
 

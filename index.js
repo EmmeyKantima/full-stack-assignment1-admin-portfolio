@@ -20,16 +20,19 @@ app.use(express.static(path.join (__dirname, "public")));
 
 app.use(express.urlencoded({ extended: true }));
 
+// Register API routes
 app.use("/api", apiRoutes);
 
-//Routes
+//Import application Routes
 import projectRoutes from "./components/projects/router.js";
 import technologyRoutes from "./components/technologies/router.js";
 
+// Register project routes
 app.use("/projects", projectRoutes);
+// Register technology routes
 app.use("/technologies", technologyRoutes);
 
-
+// Home page
 app.get("/", (req, resp) => {
   resp.render("index", { title: "Home" });
 });
