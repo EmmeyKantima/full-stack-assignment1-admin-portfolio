@@ -57,7 +57,6 @@ body{
 
     text-decoration:none;
     color:#c8c5c5;
-    transition:.25s;
     font-weight:500;
 }
 
@@ -111,7 +110,6 @@ p{
     padding:25px;
     border-radius:10px;
     border:1px solid #323843;
-    transition:.25s;
 }
 
 .card h2{
