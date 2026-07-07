@@ -35,7 +35,7 @@ router.get("/edit", async (req, res) => {
 
 });
 
-//Edit Submit
+// Edit Submit
 router.post("/edit/submit", async (req, res) => {
 
     await techDB.updateTechnology(req.body.technologyId, { name: req.body.name, category: req.body.category });
