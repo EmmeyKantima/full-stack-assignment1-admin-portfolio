@@ -1,6 +1,7 @@
 //Import Module
 import "dotenv/config";
 import express from "express";
+import cors from "cors";
 import path from "path";
 import dns from 'node:dns';
 import apiRoutes from "./components/api/router.js";
@@ -11,6 +12,8 @@ const __dirname = import.meta.dirname
 //Set up Express app and app PORT number
 const app = express();
 const port = process.env.PORT || 8888;
+
+app.use(cors());s
 
 //Set up app to use PUG 
 app.set("view engine", "pug");
