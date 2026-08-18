@@ -13,7 +13,7 @@ const __dirname = import.meta.dirname
 const app = express();
 const port = process.env.PORT || 8888;
 
-app.use(cors());s
+app.use(cors());
 
 //Set up app to use PUG 
 app.set("view engine", "pug");
